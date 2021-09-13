@@ -36,6 +36,6 @@ def app_create(config_name):
     # app.register_blueprint(auth_blueprint, url_prefix="/user/")
     # app.register_blueprint(organization_blueprint, url_prefix="/user/")
 
-    app.register_blueprint(user, url_prefix="/user/")
-    app.register_blueprint(album, url_prefix="/album/")
+    app.register_blueprint(user, url_prefix="/api/user/")
+    app.register_blueprint(album, url_prefix="/api/album/")
     return app
