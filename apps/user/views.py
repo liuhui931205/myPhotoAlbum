@@ -26,7 +26,7 @@ def get_info():
     data = {
         "email":"648802794@qq.com",
         "name":"liuhui",
-        "avatar":"http://cache.lhananld.xyz/1628132361",
+        "avatar":"http://cache.lhananld.xyz/avatar/liuhuiWechatIMG207.jpeg",
     }
     resp = jsonify(code=20000, data=data, message="查询成功")
     return resp
@@ -38,7 +38,7 @@ def logout():
     data = {
         "email":"648802794@qq.com",
         "name":"liuhui",
-        "avatar":"http://cache.lhananld.xyz/1628132361",
+        "avatar":"http://cache.lhananld.xyz/avatar/liuhuiWechatIMG207.jpeg",
     }
     resp = jsonify(code=20000, data="", message="查询成功")
     return resp
