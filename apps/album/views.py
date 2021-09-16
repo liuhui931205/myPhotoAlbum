@@ -56,3 +56,36 @@ def get_up_token():
 
     resp = jsonify(code=20000, data={"token": token, "key": key}, message="查询成功")
     return resp
+
+
+@album.route('/sakura', methods=["PUT"])
+def set_sakura():
+    req_dict = request.json
+    tp = req_dict.get("type")
+    a_id = req_dict.get("id")
+    o = db.session.query(ShuYanAlbum).filter(ShuYanAlbum.id == int(a_id)).first()
+    obj = db.session.query(ShuYanSakura).filter(ShuYanSakura.sakura_type == tp).first()
+    if obj:
+        obj.img_url = o.img_url
+    else:
+        obj = ShuYanSakura()
+        obj.img_url = o.img_url
+        obj.sakura_type = tp
+    try:
+        db.session.add(obj)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        raise e
+    resp = jsonify(code=20000, data="", message="查询成功")
+    return resp
+
+
+@album.route('/sakura', methods=["GET"])
+def get_sakura():
+    data = {}
+    results = db.session.query(ShuYanSakura).all()
+    for o in results:
+        data.update({o.sakura_type:f"{BASE_URL}{o.img_url}"})
+    resp = jsonify(code=20000, data=data, message="查询成功")
+    return resp
